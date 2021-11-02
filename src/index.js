@@ -1,14 +1,13 @@
+import {
+  ApolloClient, ApolloProvider, createHttpLink,
+  InMemoryCache
+} from '@apollo/client';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './styles/index.css';
+import {BrowserRouter} from 'react-router-dom';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
-import {
-  ApolloProvider,
-  ApolloClient,
-  createHttpLink,
-  InMemoryCache,
-} from '@apollo/client';
+import './styles/index.css';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:4000',
@@ -21,9 +20,11 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <App />
-    </ApolloProvider>
+    <BrowserRouter>
+      <ApolloProvider client={client}>
+        <App />
+      </ApolloProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
